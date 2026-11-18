@@ -1,0 +1,68 @@
+{
+  "updatedAt": "2026-11-12T18:39:35.553Z",
+  "users": [
+    {
+      "id": "u-god",
+      "name": "Nat",
+      "role": "god",
+      "pinSalt": "86f2252467e78a51",
+      "pinHash": "83d45f0a4196aa560e320d2854a5488ade9576ba886cede89b78d175eb20ff54"
+    },
+    {
+      "id": "u-mwdv2i55",
+      "name": "Lola",
+      "role": "teacher",
+      "pinSalt": "1f12920d5fe10887",
+      "pinHash": "0ec1bb628924757c1e8fc96083c93672692786d3fc1498114694b565b3af1963"
+    }
+  ],
+  "perms": {
+    "god": [
+      "groups",
+      "economics",
+      "moodboard",
+      "progress",
+      "tracking",
+      "annual",
+      "content",
+      "warehouse",
+      "reports",
+      "attendance",
+      "library",
+      "users"
+    ],
+    "admin": [
+      "groups",
+      "economics",
+      "moodboard",
+      "progress",
+      "tracking",
+      "annual",
+      "content",
+      "warehouse",
+      "reports",
+      "attendance",
+      "library"
+    ],
+    "coordinator": [
+      "groups",
+      "moodboard",
+      "progress",
+      "tracking",
+      "annual",
+      "content",
+      "reports",
+      "attendance",
+      "library"
+    ],
+    "teacher": [
+      "groups",
+      "moodboard",
+      "progress",
+      "tracking",
+      "reports",
+      "attendance",
+      "library"
+    ]
+  }
+}

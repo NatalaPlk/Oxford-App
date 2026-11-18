@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vista móvil</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 16px 28px;
+    background: #e9edf5;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: #17235d;
+  }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; }
+  .bar strong { margin-right: 6px; }
+  .bar button {
+    border: 1px solid #c5cde0; background: #fff; color: #17235d;
+    border-radius: 999px; padding: 7px 14px; font: inherit; font-size: 0.9rem; cursor: pointer;
+  }
+  .bar button[aria-pressed="true"] { background: #1f3780; border-color: #1f3780; color: #fff; }
+  .phone {
+    padding: 14px 12px 22px;
+    border-radius: 44px;
+    background: #111;
+    box-shadow: 0 18px 50px rgba(15, 25, 60, 0.28);
+  }
+  .phone::before {
+    content: ""; display: block; width: 90px; height: 6px; margin: 0 auto 10px;
+    border-radius: 3px; background: #333;
+  }
+  iframe { display: block; border: 0; border-radius: 30px; background: #fff; }
+  p { margin: 0; font-size: 0.85rem; color: #4a5680; text-align: center; max-width: 520px; }
+</style>
+</head>
+<body>
+  <div class="bar" role="group" aria-label="Tamaño del móvil">
+    <strong>Vista móvil</strong>
+    <button type="button" data-size="375x667">iPhone pequeño</button>
+    <button type="button" data-size="390x844" aria-pressed="true">iPhone normal</button>
+    <button type="button" data-size="412x915">Android</button>
+    <button type="button" data-rotate>Girar</button>
+    <button type="button" data-reload>Recargar</button>
+  </div>
+  <div class="phone"><iframe id="screen" src="seguimiento-clase.html" width="390" height="844" title="App en tamaño móvil"></iframe></div>
+  <p>Es la misma app y los mismos datos que en el ordenador, solo que en tamaño de móvil. Lo que guardes aquí se guarda también allí.</p>
+<script>
+  const screenFrame = document.getElementById("screen");
+  let size = [390, 844];
+  let landscape = false;
+  function apply() {
+    const [w, h] = landscape ? [size[1], size[0]] : size;
+    screenFrame.width = w;
+    screenFrame.height = Math.min(h, window.innerHeight - 140);
+  }
+  document.querySelectorAll("[data-size]").forEach((button) => button.addEventListener("click", () => {
+    document.querySelectorAll("[data-size]").forEach((other) => other.setAttribute("aria-pressed", String(other === button)));
+    size = button.dataset.size.split("x").map(Number);
+    apply();
+  }));
+  document.querySelector("[data-rotate]").addEventListener("click", () => { landscape = !landscape; apply(); });
+  document.querySelector("[data-reload]").addEventListener("click", () => screenFrame.contentWindow.location.reload());
+  window.addEventListener("resize", apply);
+  apply();
+</script>
+</body>
+</html>
